@@ -5,10 +5,10 @@ from cv2 import (
 from numpy import zeros
 from telegram.ext import (
     Updater, CommandHandler, CallbackQueryHandler,
-    ConversationHandler, MessageHandler, Filters)
+    ConversationHandler, MessageHandler, Filters, CallbackContext)
 from telegram import (
     InlineKeyboardButton, InlineKeyboardMarkup,
-    ReplyKeyboardMarkup, ReplyKeyboardRemove)
+    ReplyKeyboardMarkup, ReplyKeyboardRemove, Update)
 
 fonlar = [
     FONT_HERSHEY_TRIPLEX, FONT_HERSHEY_COMPLEX,
@@ -49,19 +49,19 @@ yz_br, s_tnl = range(2)
 s_ul, s_fn, y_fn, y_rn, y_ul, y_ql = range(2, 8)
 rp_ky_rm, cn_hn_en = ReplyKeyboardRemove(), ConversationHandler.END
 
-def start_1(update, context) -> None:
+def start_1(update:Update, context:CallbackContext) -> None:
     usr = update.message.from_user
     print(usr, "\n")
     update.message.reply_text("yozuvni suratga o`girish uchun /surat ni bosing")
     users.setdefault(usr["id"], StandartHol())
 
-def surat(update, context) -> int:
+def surat(update:Update, context:CallbackContext) -> int:
     usr_id = update.message.from_user.id
     update.message.reply_text("yozuv kiriting 🖊")
     users.setdefault(usr_id, StandartHol())
     return yz_br
 
-def yozibBer(update, context) -> int:
+def yozibBer(update:Update, context:CallbackContext) -> int:
     msg = update.message.text.splitlines()
     usr_id = update.message.from_user.id
     oby = users.get(usr_id, StandartHol())
@@ -77,7 +77,7 @@ def yozibBer(update, context) -> int:
         update.message.reply_document(document=img.read(), filename="yozuv_surat.jpg")
     return cn_hn_en
 
-def sozlamalar(update, context) -> int:
+def sozlamalar(update:Update, context:CallbackContext) -> int:
     usr_id = update.message.from_user.id
     users.setdefault(usr_id, StandartHol())
     knopka = [
@@ -89,7 +89,7 @@ def sozlamalar(update, context) -> int:
         "quyidagilardan birini tanlang 👇", reply_markup=ReplyKeyboardMarkup(knopka, resize_keyboard=True))
     return s_tnl
 
-def sozTanlov(update, context) -> int:
+def sozTanlov(update:Update, context:CallbackContext) -> int:
     global usr_id
     msg = update.message.text
     usr_id = update.message.from_user.id
@@ -138,7 +138,7 @@ def sozTanlov(update, context) -> int:
         update.message.reply_text("standart holat o`rnatildi", reply_markup=rp_ky_rm)
         return cn_hn_en
 
-def srtUlcham(update, context) -> int:
+def srtUlcham(update:Update, context:CallbackContext) -> int:
     msg = update.message.text
     usr_id = update.message.from_user.id
     if ' ' in msg: msg = msg.replace(' ', '')
@@ -154,7 +154,7 @@ def srtUlcham(update, context) -> int:
         "surat o`lchami kiritishga yaroqli emas \nqaytadan kiriting yoki /exit ni bosing")
     return s_ul
 
-def srtFon(update, context) -> int:
+def srtFon(update:Update, context:CallbackContext) -> int:
     qry = update.callback_query
     qry.answer()
     qry.message.delete()
@@ -164,7 +164,7 @@ def srtFon(update, context) -> int:
     qry.message.reply_text("surat orqa foni o`zgardi", reply_markup=rp_ky_rm)
     return cn_hn_en
 
-def yzvFon(update, context) -> int:
+def yzvFon(update:Update, context:CallbackContext) -> int:
     qry = update.callback_query
     qry.answer()
     qry.message.delete()
@@ -174,7 +174,7 @@ def yzvFon(update, context) -> int:
     qry.message.reply_text("yozuv foni o`zgardi", reply_markup=rp_ky_rm)
     return cn_hn_en
 
-def yzvRang(update, context) -> int:
+def yzvRang(update:Update, context:CallbackContext) -> int:
     qry = update.callback_query
     qry.answer()
     qry.message.delete()
@@ -184,7 +184,7 @@ def yzvRang(update, context) -> int:
     qry.message.reply_text("yozuv rangi o`zgardi", reply_markup=rp_ky_rm)
     return cn_hn_en
 
-def yzvUlcham(update, context) -> int:
+def yzvUlcham(update:Update, context:CallbackContext) -> int:
     msg = update.message.text
     usr_id = update.message.from_user.id
     a = msg.replace('.', '', 1) if '.' in msg else msg
@@ -198,7 +198,7 @@ def yzvUlcham(update, context) -> int:
         "yozuv o`lchami kiritishga yaroqli emas \nqaytadan kiriting yoki /exit ni bosing")
     return y_ul
 
-def yzvQanil(update, context) -> int:
+def yzvQanil(update:Update, context:CallbackContext) -> int:
     msg = update.message.text
     usr_id = update.message.from_user.id
     if msg.isdigit():
@@ -211,7 +211,7 @@ def yzvQanil(update, context) -> int:
         "yozuv qalinligi kiritishga yaroqli emas \nqaytadan kiriting yoki /exit ni bosing")
     return y_ql
 
-def exit_1(update, context) -> int:
+def exit_1(update:Update, context:CallbackContext) -> int:
     update.message.reply_text("barcha amallar to`xtatildi ❎", reply_markup=rp_ky_rm)
     return cn_hn_en
 
