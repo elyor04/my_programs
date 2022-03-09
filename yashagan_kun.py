@@ -41,7 +41,7 @@ ntj = QLabel(text="yashagan kuningiz", parent=oyn)
 setParams(knp, 80, 90, color="lightgreen", scale=10)
 setParams(ntj, 80, 135, color="white", scale=10)
 
-def yashaganKun():
+def yashaganKun() -> None:
     bgn = datetime.now()
     sna = krt.text().split('.')
     utgn = datetime(int(sna[2]), int(sna[1]), int(sna[0]))
