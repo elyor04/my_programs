@@ -42,15 +42,15 @@ setParams(knp, 80, 90, color="lightgreen", scale=10)
 setParams(ntj, 80, 135, color="white", scale=10)
 
 def yashaganKun():
-  bgn = datetime.now()
-  sna = krt.text().split('.')
-  utgn = datetime(int(sna[2]), int(sna[1]), int(sna[0]))
-  b_y = int(bgn.strftime("%Y"))
-  u_y = int(utgn.strftime("%Y"))
-  kun = (b_y - u_y) * 365 + (int(bgn.strftime("%j")) - int(utgn.strftime("%j")))
-  for i in range(u_y, b_y):
-    if i % 4 == 0: kun += 1
-  setParams(ntj, text=f"{kun} kun yashagansiz", color="lightblue")
+    bgn = datetime.now()
+    sna = krt.text().split('.')
+    utgn = datetime(int(sna[2]), int(sna[1]), int(sna[0]))
+    b_y = int(bgn.strftime("%Y"))
+    u_y = int(utgn.strftime("%Y"))
+    kun = (b_y - u_y) * 365 + (int(bgn.strftime("%j")) - int(utgn.strftime("%j")))
+    for i in range(u_y, b_y):
+        if i % 4 == 0: kun += 1
+    setParams(ntj, text=f"{kun} kun yashagansiz", color="lightblue")
 
 knp.clicked.connect(yashaganKun)
 
