@@ -1,4 +1,9 @@
-from PyQt5.QtWidgets import QApplication, QLabel, QMainWindow, QPushButton
+from PyQt5.QtWidgets import (
+    QApplication,
+    QLabel,
+    QMainWindow,
+    QPushButton,
+)
 from PyQt5.QtGui import QFont
 from sys import argv, exit
 from threading import Timer

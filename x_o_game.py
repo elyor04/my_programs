@@ -1,4 +1,10 @@
-from PyQt5.QtWidgets import QApplication, QMainWindow, QWidget, QLabel, QPushButton
+from PyQt5.QtWidgets import (
+    QApplication,
+    QMainWindow,
+    QWidget,
+    QLabel,
+    QPushButton,
+)
 from PyQt5.QtGui import QFont
 from sys import argv, exit
 from random import randrange

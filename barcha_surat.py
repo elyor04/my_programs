@@ -6,7 +6,6 @@ from PyQt5.QtWidgets import (
     QPushButton,
     QWidget,
 )
-from PyQt5.QtGui import QFont
 from cv2 import (
     imread,
     imshow,
@@ -17,6 +16,7 @@ from cv2 import (
     INTER_LINEAR,
     INTER_CUBIC,
 )
+from PyQt5.QtGui import QFont
 from sys import argv, exit
 from time import time, sleep
 from keyboard import is_pressed
