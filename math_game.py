@@ -134,7 +134,7 @@ setParams(knp, 370, 490, width=100, height=50, bg_color="orange")
 knp.clicked.connect(checkAnswer)
 
 nxt = QPushButton(text="next", parent=wnd)
-setParams(nxt, 200, 490, width=100, height=50, bg_color="green")
+setParams(nxt, 200, 490, width=100, height=50, bg_color="rgb(0, 200, 0)")
 nxt.clicked.connect(getNext)
 
 rslt = QPushButton(text="result", parent=wnd)
