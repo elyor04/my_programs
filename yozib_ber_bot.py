@@ -43,7 +43,7 @@ ranglar = {
     "oq": (250, 250, 250),
     "qora": (0, 0, 0),
     "sariq": (5, 250, 250),
-    "ko`k": (250, 5, 5),
+    "ko'k": (250, 5, 5),
     "yashil": (5, 250, 5),
     "qizil": (5, 5, 250),
     "jigar_rang": (5, 52, 102),
@@ -51,7 +51,7 @@ ranglar = {
     "pushti_rang": (250, 5, 250),
     "sabzi_rang": (5, 102, 250),
     "siyoh_rang": (215, 5, 150),
-    "ko`k_yashil": (250, 250, 5),
+    "ko'k_yashil": (250, 250, 5),
 }
 users = dict()
 
@@ -94,7 +94,7 @@ rp_ky_rm, cn_hn_en = ReplyKeyboardRemove(), ConversationHandler.END
 def start_1(update: Update, context: CallbackContext) -> None:
     usr = update.message.from_user
     print(usr, "\n")
-    update.message.reply_text("yozuvni suratga o`girish uchun /surat ni bosing")
+    update.message.reply_text("yozuvni suratga o'girish uchun /surat ni bosing")
     users.setdefault(usr["id"], StandartHol())
 
 
@@ -126,9 +126,9 @@ def sozlamalar(update: Update, context: CallbackContext) -> int:
     usr_id = update.message.from_user.id
     users.setdefault(usr_id, StandartHol())
     knopka = [
-        ["surat o`lchami", "surat orqa foni"],
+        ["surat o'lchami", "surat orqa foni"],
         ["yozuv foni", "yozuv rangi"],
-        ["yozuv o`lchami", "yozuv qalinligi"],
+        ["yozuv o'lchami", "yozuv qalinligi"],
         ["standart holat"],
     ]
     update.message.reply_text(
@@ -154,9 +154,9 @@ def sozTanlov(update: Update, context: CallbackContext) -> int:
                 ]
             )
 
-    if msg == "surat o`lchami":
+    if msg == "surat o'lchami":
         update.message.reply_text(
-            "surat o`lchamini kiriting \nnamuna: 350x400 (eni x bo`yi)",
+            "surat o'lchamini kiriting \nnamuna: 350x400 (eni x bo'yi)",
             reply_markup=rp_ky_rm,
         )
         return s_ul
@@ -187,9 +187,9 @@ def sozTanlov(update: Update, context: CallbackContext) -> int:
             "ranglardan birini tanlang 👇", reply_markup=InlineKeyboardMarkup(knopka)
         )
         return y_rn
-    elif msg == "yozuv o`lchami":
+    elif msg == "yozuv o'lchami":
         update.message.reply_text(
-            "yozuv o`lchamini kiriting \nnamuna: 0.8 yoki 1.3", reply_markup=rp_ky_rm
+            "yozuv o'lchamini kiriting \nnamuna: 0.8 yoki 1.3", reply_markup=rp_ky_rm
         )
         return y_ul
     elif msg == "yozuv qalinligi":
@@ -199,7 +199,7 @@ def sozTanlov(update: Update, context: CallbackContext) -> int:
         return y_ql
     elif msg == "standart holat":
         users.update({usr_id: StandartHol()})
-        update.message.reply_text("standart holat o`rnatildi", reply_markup=rp_ky_rm)
+        update.message.reply_text("standart holat o'rnatildi", reply_markup=rp_ky_rm)
         return cn_hn_en
 
 
@@ -214,10 +214,10 @@ def srtUlcham(update: Update, context: CallbackContext) -> int:
             oby = users.get(usr_id, StandartHol())
             oby.uzgartir(img_ulchm=(int(msg[1]), int(msg[0]), 3))
             users.update({usr_id: oby})
-            update.message.reply_text("surat o`lchami o`zgardi")
+            update.message.reply_text("surat o'lchami o'zgardi")
             return cn_hn_en
     update.message.reply_text(
-        "surat o`lchami kiritishga yaroqli emas \nqaytadan kiriting yoki /exit ni bosing"
+        "surat o'lchami kiritishga yaroqli emas \nqaytadan kiriting yoki /exit ni bosing"
     )
     return s_ul
 
@@ -229,7 +229,7 @@ def srtFon(update: Update, context: CallbackContext) -> int:
     oby = users.get(usr_id, StandartHol())
     oby.uzgartir(orq_fon=ranglar[qry.data])
     users.update({usr_id: oby})
-    qry.message.reply_text("surat orqa foni o`zgardi", reply_markup=rp_ky_rm)
+    qry.message.reply_text("surat orqa foni o'zgardi", reply_markup=rp_ky_rm)
     return cn_hn_en
 
 
@@ -240,7 +240,7 @@ def yzvFon(update: Update, context: CallbackContext) -> int:
     oby = users.get(usr_id, StandartHol())
     oby.uzgartir(yzv_fon=fonlar[int(qry.data)])
     users.update({usr_id: oby})
-    qry.message.reply_text("yozuv foni o`zgardi", reply_markup=rp_ky_rm)
+    qry.message.reply_text("yozuv foni o'zgardi", reply_markup=rp_ky_rm)
     return cn_hn_en
 
 
@@ -251,7 +251,7 @@ def yzvRang(update: Update, context: CallbackContext) -> int:
     oby = users.get(usr_id, StandartHol())
     oby.uzgartir(yzv_rang=ranglar[qry.data])
     users.update({usr_id: oby})
-    qry.message.reply_text("yozuv rangi o`zgardi", reply_markup=rp_ky_rm)
+    qry.message.reply_text("yozuv rangi o'zgardi", reply_markup=rp_ky_rm)
     return cn_hn_en
 
 
@@ -263,10 +263,10 @@ def yzvUlcham(update: Update, context: CallbackContext) -> int:
         oby = users.get(usr_id, StandartHol())
         oby.uzgartir(yzv_ulchm=float(msg))
         users.update({usr_id: oby})
-        update.message.reply_text("yozuv o`lchami o`zgardi")
+        update.message.reply_text("yozuv o'lchami o'zgardi")
         return cn_hn_en
     update.message.reply_text(
-        "yozuv o`lchami kiritishga yaroqli emas \nqaytadan kiriting yoki /exit ni bosing"
+        "yozuv o'lchami kiritishga yaroqli emas \nqaytadan kiriting yoki /exit ni bosing"
     )
     return y_ul
 
@@ -278,7 +278,7 @@ def yzvQanil(update: Update, context: CallbackContext) -> int:
         oby = users.get(usr_id, StandartHol())
         oby.uzgartir(yzv_qln=int(msg))
         users.update({usr_id: oby})
-        update.message.reply_text("yozuv qalinligi o`zgardi")
+        update.message.reply_text("yozuv qalinligi o'zgardi")
         return cn_hn_en
     update.message.reply_text(
         "yozuv qalinligi kiritishga yaroqli emas \nqaytadan kiriting yoki /exit ni bosing"
@@ -287,11 +287,11 @@ def yzvQanil(update: Update, context: CallbackContext) -> int:
 
 
 def exit_1(update: Update, context: CallbackContext) -> int:
-    update.message.reply_text("barcha amallar to`xtatildi ❎", reply_markup=rp_ky_rm)
+    update.message.reply_text("barcha amallar to'xtatildi ❎", reply_markup=rp_ky_rm)
     return cn_hn_en
 
 
-soz_tnl = "^(surat o`lchami|surat orqa foni|yozuv foni|yozuv rangi|yozuv o`lchami|yozuv qalinligi|standart holat)$"
+soz_tnl = "^(surat o'lchami|surat orqa foni|yozuv foni|yozuv rangi|yozuv o'lchami|yozuv qalinligi|standart holat)$"
 
 
 def main_1() -> None:
