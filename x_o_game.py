@@ -48,7 +48,7 @@ def sozlash(
 ilv = QApplication(argv)
 oyn = QMainWindow()
 oyn.setGeometry(100, 100, 600, 700)
-oyn.setWindowTitle("x_o o`yin")
+oyn.setWindowTitle("x_o o'yin")
 
 ntj, yzv1, yzv2 = [QLabel(oyn) for i in range(3)]
 sozlash(ntj, 200, 250, mashtab=12)

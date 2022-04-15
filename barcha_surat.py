@@ -196,7 +196,7 @@ class Window(QMainWindow):
             self.__yz[3].setText("")
 
     def start(self) -> None:
-        m = QLabel("Boshlang`ich manzilni kiriting:", self)
+        m = QLabel("Boshlang'ich manzilni kiriting:", self)
         self.bajar(m, 10, 5)
         self.manzil = QLineEdit("C:/Users", self)
         self.bajar(self.manzil, 10, 30, rang="white", eni=220)
